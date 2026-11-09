@@ -1,9 +1,9 @@
 # Kafka
-Kafka is a distributed streaming platform. It runs in a cluster of one or more servers.
-Used to publish/subscribe, store, and process streams of records (key:value + timestamp)
-Kafka stores streams of records in categories called topics.
+Kafka is a distributed streaming platform. It runs in a cluster of one or more servers (aka brokers).
+Used to publish/subscribe, store, and process streams of records (key:value + timestamp). Think of records as events.
+Kafka stores streams of records in categories called topics. 
 
-It stores each topic in multiple partitions (for scalability), many consumers can **subscribe** to a topic and read about it. Similarly many producers can produce content(articles regarding a topic) and **publish** it to that topic's stream of records. 
+It stores each topic in multiple partiitions (for scalability), many consumers can **subscribe** to a topic and read about it. Similarly many producers can produce content(articles regarding a topic) and **publish** it to that topic's stream of records. 
 Stores partitioned log containing offset. Refer [Diagram](https://kafka.apache.org/25/images/log_anatomy.png)
 
 Each record has an offset id, a consumer usually goes sequentially, but if need be can override the offset and get old data. metadata contains offset id where a consumer last left reading.
@@ -25,10 +25,22 @@ Streams processor: input is streams of records, you can do non-trivial processin
 To sum up: Kafka can process historical, stored data, it can also process live data as it comes. It replicates data thus addressing fault-tolerance (providing reliability). Using only offset id's it provides a low-latency service. 
 
 
+## Applications
+Track user activity:
+- Topics: PageView, Search, Navigation
+- The consumer will be a ETL tool to load this data into Hadoop or an offline data warehousing system.
+
+Refer [Use cases](https://kafka.apache.org/uses)
+
 question: 
 Does a partition need to fit entirely on a server?
-Is it similar to hadoop?
+What is the replication factor parameter?
+Explain partitions in detail?
 
+
+## Confluence
+- provides a sql like language (KSQL) to CRUD on kafka topics.
+- https://kafka-tutorials.confluent.io/ 
 
 # References
 Basics: https://kafka.apache.org/intro.html
